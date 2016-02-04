@@ -1,28 +1,11 @@
-# ruby-on-rails-vagrant
+# API-registrering, Ruby on Rails-applikation i kursen Webbramverk
+Linnéuniversitet VT16
 
-A vagrant file for the course 1dv450, Linnaeus University, Sweden, Kalmar
-The installation will take 10-15 minutes the first time.
+Av: Ola Franzén (of222au)
 
-Add the vagrantfile and the provision.sh to your own repo and run "vagrant up"
-
-## The Vagrantfile
-The vagrantfile installs:
-- Ubuntu ("hashicorp/precise64") if your system dosn´t support 64 change the vagrantfile to "hashicorp/precise32"
-
-- rvm (latest)
-- ruby (latest)
-- Rails (latest)
-- SQLLite
-- postgreeSQL
-- node.js
-
-## using vagrant
-To install (first time) and start the virtual machine ```vagrant up```
-
-The go to the vagrant folder (this is mirrored to your host OS)
-``` cd /vagrant ```
-
-from here you can make a new rails application.
-
-When you ready run ```vagrant halt``` to halt the virtual machine.
-Dont forget to commit and push your code
+## För att köra igång servern
+- Kör "vagrant up"
+- Kör "vagrant ssh"
+- Navigera till applikationen genom "cd /vagrant/Registration"
+- Starta servern genom "rails s -b 0.0.0.0"
+- Webbapplikationen kan nu kommas åt via http://localhost:3000

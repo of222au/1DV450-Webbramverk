@@ -1,0 +1,75 @@
+<% content_for :title, 'Registrering' %>
+<div id="register">
+
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+
+      <div class="col-sm-offset-2">
+        <h2>Registrering</h2>
+      </div>
+
+    <%= form_for @user, html: { class: 'form-horizontal' } do |f| %>
+
+      <div class="form-group <%= f.object.errors[:email].any? ? 'has-error' : '' %>">
+        <%= f.label :email, 'E-post', class: 'col-sm-2 control-label' %>
+        <div class="col-sm-10">
+          <%= f.email_field :email, class: 'form-control' %>
+        </div>
+
+        <% if f.object.errors[:email] %>
+            <div class="col-sm-offset-2 col-sm-10">
+              <span class="help-block">
+                <%= f.object.errors[:email][0] %>
+              </span>
+            </div>
+        <% end %>
+      </div>
+
+      <div class="form-group <%= f.object.errors[:password].any? ? 'has-error' : '' %>">
+        <%= f.label :password, 'Lösenord', class: 'col-sm-2 control-label' %>
+        <div class="col-sm-10">
+          <%= f.password_field :password, class: 'form-control' %>
+        </div>
+
+        <% if f.object.errors[:password] %>
+            <div class="col-sm-offset-2 col-sm-10">
+              <span class="help-block">
+                <%= f.object.errors[:password][0] %>
+              </span>
+            </div>
+        <% end %>
+      </div>
+
+      <div class="form-group <%= f.object.errors[:password_confirmation].any? ? 'has-error' : '' %>">
+        <%= f.label :password_confirmation, 'Bekräfta', class: 'col-sm-2 control-label' %>
+        <div class="col-sm-10">
+          <%= f.password_field :password_confirmation, class: 'form-control' %>
+        </div>
+
+        <% if f.object.errors[:password_confirmation] %>
+            <div class="col-sm-offset-2 col-sm-10">
+              <span class="help-block">
+                <%= f.object.errors[:password_confirmation][0] %>
+              </span>
+            </div>
+        <% end %>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <%= f.submit 'Skapa konto', class: 'btn btn-primary' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <%= link_to 'Logga in istället', login_path %>
+        </div>
+      </div>
+
+    <% end %>
+
+    </div>
+  </div>
+
+</div>

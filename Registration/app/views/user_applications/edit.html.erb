@@ -1,0 +1,17 @@
+<% content_for :title, 'Ändra applikationen ' + @user_application.title %>
+
+<div id="new-item">
+
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+
+      <div class="col-sm-offset-2">
+        <h2>Ändra applikationen</h2>
+      </div>
+
+      <%= render partial: 'form', locals: { edit: true } %>
+
+    </div>
+  </div>
+
+</div>
