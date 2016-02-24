@@ -1,0 +1,17 @@
+class ErrorMessage
+
+  def initialize(developer_error_message, user_error_message)
+
+    @developer_error_message = developer_error_message
+    @user_error_message = user_error_message
+
+  end
+
+  def serializable_hash (options={})
+    options = {
+        
+    }.update(options)
+    super(options)
+  end
+
+end

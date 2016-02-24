@@ -1,0 +1,416 @@
+{
+	"id": "63da6e84-6762-39ba-37f8-81443b6b67f3",
+	"name": "Webbramverk API",
+	"description": "",
+	"order": [],
+	"folders": [
+		{
+			"id": "ee52b69d-0706-ec6d-2f92-cc2b3e6343e3",
+			"name": "Main",
+			"description": "",
+			"order": [
+				"8f58dbd6-a6fa-864b-5b5c-2e7aad8ece36",
+				"8b9b96b4-1c89-0253-f724-f2e92880cf6b",
+				"f4b31902-708d-0f17-eda6-831bc4291214",
+				"678a144f-a209-9047-8911-b2ff20798cd8",
+				"bad4aaf8-a85a-6a83-6164-fcaaf63b0341",
+				"3be603ee-d4be-2abd-7422-1590e3d36566",
+				"611c3fdb-de6c-00cb-1f39-298325b38abf",
+				"fef56c3d-365a-7d41-86e2-c928fb7e66a8",
+				"67661f18-0e59-88cb-8acc-a2e625cc7278",
+				"29b1a905-6407-d382-17c5-5d3acf16a1e7",
+				"ccd371d0-b3b5-237a-f173-359566734ef5"
+			],
+			"owner": "339616",
+			"collectionId": "63da6e84-6762-39ba-37f8-81443b6b67f3"
+		},
+		{
+			"id": "877682c0-c229-245f-103c-af00ab4a19ec",
+			"name": "Pre",
+			"description": "",
+			"order": [
+				"c67759c1-24ba-eb02-4828-b1d7b9d7354f"
+			],
+			"owner": "339616",
+			"collectionId": "63da6e84-6762-39ba-37f8-81443b6b67f3"
+		}
+	],
+	"timestamp": 0,
+	"owner": "339616",
+	"remoteLink": null,
+	"public": false,
+	"requests": [
+		{
+			"id": "29b1a905-6407-d382-17c5-5d3acf16a1e7",
+			"headers": "X-ApiKey: {{ApiKey}}\nAuthorization: {{AuthToken}}\n",
+			"url": "localhost:3000/events/nearby.json?lng=58&lat=14&distance=20&page=1",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "GET",
+			"data": [
+				{
+					"key": "email",
+					"value": "user1@test.com",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "1234",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "var jsonData = JSON.parse(responseBody);\ntests[\"EventsLength\"] = jsonData.length >= 2;\ntests[\"Events1Contents\"] = jsonData[0].name !== undefined && jsonData[0].name.length > 2 &&\n                            jsonData[0].creator !== undefined && jsonData[0].creator.username.length > 2;\n                            \npaginationHeader = postman.getResponseHeader(\"X-Pagination\");\nvar pagination = JSON.parse(paginationHeader);\ntests[\"X-Pagination is present\"] = paginationHeader !== null && \n                                    pagination.first_page !== undefined &&\n                                    pagination.first_page === true;",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1456169033329,
+			"name": "localhost:3000/events/nearby.json",
+			"description": "",
+			"collectionId": "63da6e84-6762-39ba-37f8-81443b6b67f3",
+			"responses": []
+		},
+		{
+			"id": "3be603ee-d4be-2abd-7422-1590e3d36566",
+			"headers": "X-ApiKey: {{ApiKey}}\nAuthorization: {{AuthToken}}\n",
+			"url": "localhost:3000/creators/1.json",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "GET",
+			"data": [
+				{
+					"key": "email",
+					"value": "user1@test.com",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "1234",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "var jsonData = JSON.parse(responseBody);\ntests[\"CreatorContents\"] = jsonData.username !== undefined && jsonData.username.length > 2 &&\n                            jsonData.events !== undefined;",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1456152432516,
+			"name": "localhost:3000/creators/1.json",
+			"description": "",
+			"collectionId": "63da6e84-6762-39ba-37f8-81443b6b67f3",
+			"folder": "ee52b69d-0706-ec6d-2f92-cc2b3e6343e3"
+		},
+		{
+			"id": "611c3fdb-de6c-00cb-1f39-298325b38abf",
+			"headers": "X-ApiKey: {{ApiKey}}\nAuthorization: {{AuthToken}}\n",
+			"url": "localhost:3000/creators/4567.json",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "GET",
+			"data": [
+				{
+					"key": "email",
+					"value": "user1@test.com",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "1234",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "var jsonData = JSON.parse(responseBody);\ntests[\"Error\"] = jsonData.developer_error_message !== undefined &&\n                    jsonData.developer_error_message.length > 10 &&\n                    jsonData.user_error_message !== undefined &&\n                    jsonData.user_error_message.length > 10;",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1456152444757,
+			"name": "localhost:3000/creators/4567.json",
+			"description": "",
+			"collectionId": "63da6e84-6762-39ba-37f8-81443b6b67f3",
+			"folder": "ee52b69d-0706-ec6d-2f92-cc2b3e6343e3"
+		},
+		{
+			"id": "67661f18-0e59-88cb-8acc-a2e625cc7278",
+			"headers": "X-ApiKey: {{ApiKey}}\nAuthorization: {{AuthToken}}\n",
+			"url": "localhost:3000/tags/1.json",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "GET",
+			"data": [
+				{
+					"key": "email",
+					"value": "user1@test.com",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "1234",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "var jsonData = JSON.parse(responseBody);\ntests[\"EventContents\"] = jsonData.name !== undefined && jsonData.name.length > 2 &&\n                            jsonData.events !== undefined && jsonData.events.length > 2;",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1456164826721,
+			"name": "localhost:3000/tags/1.json",
+			"description": "",
+			"collectionId": "63da6e84-6762-39ba-37f8-81443b6b67f3",
+			"responses": []
+		},
+		{
+			"id": "678a144f-a209-9047-8911-b2ff20798cd8",
+			"headers": "X-ApiKey: {{ApiKey}}\nAuthorization: {{AuthToken}}\n",
+			"url": "localhost:3000/events/4567.json",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "GET",
+			"data": [
+				{
+					"key": "email",
+					"value": "user1@test.com",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "1234",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "var jsonData = JSON.parse(responseBody);\ntests[\"Error\"] = jsonData.developer_error_message !== undefined &&\n                    jsonData.developer_error_message.length > 10 &&\n                    jsonData.user_error_message !== undefined &&\n                    jsonData.user_error_message.length > 10;",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1456152318977,
+			"name": "localhost:3000/events/4567.json",
+			"description": "",
+			"collectionId": "63da6e84-6762-39ba-37f8-81443b6b67f3",
+			"folder": "ee52b69d-0706-ec6d-2f92-cc2b3e6343e3"
+		},
+		{
+			"id": "8b9b96b4-1c89-0253-f724-f2e92880cf6b",
+			"headers": "X-ApiKey: {{ApiKey}}\nAuthorization: {{AuthToken}}\n",
+			"url": "localhost:3000/events.json?page=2",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "GET",
+			"data": [
+				{
+					"key": "email",
+					"value": "user1@test.com",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "1234",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "var jsonData = JSON.parse(responseBody);\ntests[\"EventsLength\"] = jsonData.length >= 2;\ntests[\"Events1Contents\"] = jsonData[0].name !== undefined && jsonData[0].name.length > 2 &&\n                            jsonData[0].creator !== undefined && jsonData[0].creator.username.length > 2;\n                            \n                            \npaginationHeader = postman.getResponseHeader(\"X-Pagination\");\nvar pagination = JSON.parse(paginationHeader);\ntests[\"X-Pagination is present and is page 2\"] = paginationHeader !== null && \n                                    pagination.first_page !== undefined &&\n                                    pagination.first_page === false &&\n                                    pagination.next_page !== undefined &&\n                                    pagination.next_page == 3;",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1456163877181,
+			"name": "localhost:3000/events.json (page 2)",
+			"description": "",
+			"collectionId": "63da6e84-6762-39ba-37f8-81443b6b67f3",
+			"responses": []
+		},
+		{
+			"id": "8f58dbd6-a6fa-864b-5b5c-2e7aad8ece36",
+			"headers": "X-ApiKey: {{ApiKey}}\nAuthorization: {{AuthToken}}\n",
+			"url": "localhost:3000/events.json",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "GET",
+			"data": [
+				{
+					"key": "email",
+					"value": "user1@test.com",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "1234",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "var jsonData = JSON.parse(responseBody);\ntests[\"EventsLength\"] = jsonData.length >= 2;\ntests[\"Events1Contents\"] = jsonData[0].name !== undefined && jsonData[0].name.length > 2 &&\n                            jsonData[0].creator !== undefined && jsonData[0].creator.username.length > 2;\n                            \npaginationHeader = postman.getResponseHeader(\"X-Pagination\");\nvar pagination = JSON.parse(paginationHeader);\ntests[\"X-Pagination is present\"] = paginationHeader !== null && \n                                    pagination.first_page !== undefined &&\n                                    pagination.first_page === true;",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1456169365171,
+			"name": "localhost:3000/events.json",
+			"description": "",
+			"collectionId": "63da6e84-6762-39ba-37f8-81443b6b67f3"
+		},
+		{
+			"id": "bad4aaf8-a85a-6a83-6164-fcaaf63b0341",
+			"headers": "Authorization: {{AuthToken}}\n",
+			"url": "localhost:3000/events/1.json",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "GET",
+			"data": [
+				{
+					"key": "email",
+					"value": "user1@test.com",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "1234",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "var jsonData = JSON.parse(responseBody);\ntests[\"Error\"] = jsonData.developer_error_message !== undefined &&\n                    jsonData.developer_error_message.length > 10 &&\n                    jsonData.user_error_message !== undefined &&\n                    jsonData.user_error_message.length > 10;",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1456152370133,
+			"name": "localhost:3000/events/1.json (without api key)",
+			"description": "",
+			"collectionId": "63da6e84-6762-39ba-37f8-81443b6b67f3",
+			"folder": "ee52b69d-0706-ec6d-2f92-cc2b3e6343e3"
+		},
+		{
+			"id": "c67759c1-24ba-eb02-4828-b1d7b9d7354f",
+			"headers": "",
+			"url": "localhost:3000/auth",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "email",
+					"value": "user1@test.com",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "1234",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "var jsonData = JSON.parse(responseBody);\ntests[\"Auth\"] = jsonData.auth_token !== undefined && jsonData.auth_token.length > 40;",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1456151772510,
+			"name": "auth",
+			"description": "",
+			"collectionId": "63da6e84-6762-39ba-37f8-81443b6b67f3",
+			"responses": [],
+			"folder": "877682c0-c229-245f-103c-af00ab4a19ec",
+			"isFromCollection": true,
+			"collectionRequestId": "c67759c1-24ba-eb02-4828-b1d7b9d7354f"
+		},
+		{
+			"id": "ccd371d0-b3b5-237a-f173-359566734ef5",
+			"headers": "X-ApiKey: {{ApiKey}}\nAuthorization: {{AuthToken}}\n",
+			"url": "localhost:3000/events.json?name_starts_with=Konsert&location_name_starts_with=Nånstans",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "GET",
+			"data": [
+				{
+					"key": "email",
+					"value": "user1@test.com",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "1234",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "var jsonData = JSON.parse(responseBody);\ntests[\"EventsLength\"] = jsonData.length >= 2;\ntests[\"Events1Contents\"] = jsonData[0].name !== undefined && jsonData[0].name.length > 2 &&\n                            jsonData[0].creator !== undefined && jsonData[0].creator.username.length > 2;\n                            \npaginationHeader = postman.getResponseHeader(\"X-Pagination\");\nvar pagination = JSON.parse(paginationHeader);\ntests[\"X-Pagination is present\"] = paginationHeader !== null && \n                                    pagination.first_page !== undefined &&\n                                    pagination.first_page === true;",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1456311518589,
+			"name": "localhost:3000/events.json (with filter)",
+			"description": "",
+			"collectionId": "63da6e84-6762-39ba-37f8-81443b6b67f3",
+			"responses": []
+		},
+		{
+			"id": "f4b31902-708d-0f17-eda6-831bc4291214",
+			"headers": "X-ApiKey: {{ApiKey}}\nAuthorization: {{AuthToken}}\n",
+			"url": "localhost:3000/events/1.json",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "GET",
+			"data": [
+				{
+					"key": "email",
+					"value": "user1@test.com",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "1234",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "var jsonData = JSON.parse(responseBody);\ntests[\"EventContents\"] = jsonData.name !== undefined && jsonData.name.length > 2 &&\n                            jsonData.creator !== undefined && jsonData.creator.username.length > 2;",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1456164819197,
+			"name": "localhost:3000/events/1.json",
+			"description": "",
+			"collectionId": "63da6e84-6762-39ba-37f8-81443b6b67f3"
+		},
+		{
+			"id": "fef56c3d-365a-7d41-86e2-c928fb7e66a8",
+			"headers": "X-ApiKey: {{ApiKey}}\nAuthorization: {{AuthToken}}\nContent-Type: application/json\n",
+			"url": "localhost:3000/events",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": "var jsonData = JSON.parse(responseBody);\ntests[\"CreatedEventContents\"] = jsonData.name !== undefined && jsonData.name.length > 2 &&\n                                jsonData.tags !== undefined && jsonData.tags.length == 2;",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1456161664509,
+			"name": "localhost:3000/events (POST)",
+			"description": "",
+			"collectionId": "63da6e84-6762-39ba-37f8-81443b6b67f3",
+			"rawModeData": "{ \n    \"event\":\n    {\n        \"name\": \"Postman test\",\n        \"description\": \"Ett test bara...\",\n        \"creator_id\": 1,\n        \"location_attributes\":\n        {\n            \"name\": \"Växjö\",\n            \"longitude\": 58,\n            \"latitude\": 14\n        },\n        \"tags\":\n        [\n            {\n                \"name\": \"Ny tag!\"\n            },\n            {\n                \"name\": \"Konsert\"\n            }\n        ]\n    }\n}"
+		}
+	]
+}

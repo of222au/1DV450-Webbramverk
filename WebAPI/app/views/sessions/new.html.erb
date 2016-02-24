@@ -1,0 +1,46 @@
+<% content_for :title, 'Logga in' %>
+
+<div id="login">
+
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+
+      <div class="col-sm-offset-2">
+        <h2>Logga in</h2>
+      </div>
+
+  <%= form_tag(login_path, { method: 'post', class: 'form-horizontal' }) do %>
+
+      <div class="form-group">
+        <%= label_tag :email, 'E-post', class: 'col-sm-2 control-label' %>
+        <div class="col-sm-10">
+          <%= email_field_tag :email, '', class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= label_tag :password, 'Lösenord', class: 'col-sm-2 control-label' %>
+        <div class="col-sm-10">
+          <%= password_field_tag :password, '', class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <%= submit_tag 'Logga in', class: 'btn btn-primary' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <%= link_to 'Registrera dig', register_path %>
+        </div>
+      </div>
+
+  <% end %>
+
+    </div>
+  </div>
+
+
+</div>
