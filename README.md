@@ -1,4 +1,4 @@
-# Ruby on Rails-applikation i kursen Webbramverk
+# Ruby on Rails-applikation med AngularJS-frontend i kursen Webbramverk
 Linnéuniversitet VT16
 
 Av: Ola Franzén (of222au)
@@ -20,6 +20,11 @@ Av: Ola Franzén (of222au)
 - Tryck fram app/index.html, och gör en "Preview" i en webbläsare (i Windows tryck Alt+F2).
 - Startsidan bör nu visas och du kan navigera runt i webbapplikationen (observera att det inte går göra en refresh (F5) i annat än på root url:en (Client/app/), samt på startsidan (/map) då jag lagt en kopia på index.html här för testnings skull).
 
+
+##Inloggningsuppgifter
+- Två "creators" skapas automatiskt genom seedning som man kan logga in med för testning:
+ - user1@test.com / lösenord: 1234
+ - user2@test.com / lösenord: 1234
 
 ### För att använda Postman-filen:
 - Läs in postman-filen (som slutar på .postman_collection) i Postman genom "Import".
