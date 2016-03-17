@@ -23,7 +23,7 @@ module ApplicationHelper
 
     @error = ErrorMessage.new("Need to include a valid api key in the request headers.",
                               "No access to this action" )
-    respond_with @error, status: :unauthorized
+    do_respond_with @error, :unauthorized
   end
 
   def do_respond_with(object, status = nil)
@@ -39,7 +39,7 @@ module ApplicationHelper
 
   def raise_bad_format
     @error = ErrorMessage.new("The API does not support the requested format", "There was a bad call. Contact the developer!" )
-    respond_with @error, status: :bad_request
+    do_respond_with @error, :bad_request
   end
 
   def set_default_format

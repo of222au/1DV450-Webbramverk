@@ -1,0 +1,35 @@
+
+<div class="event-post">
+
+    <ol class="breadcrumb">
+        <li><a href="map">Hem</a></li>
+        <li><a href="events">Event</a></li>
+        <li><a href="event/{{ event.id }}">{{ eventName }}</a></li>
+        <li class="active">Ändra</li>
+    </ol>
+
+    <div class="alert alert-success alert-dismissible" role="alert" ng-show="!closeSuccessAlert && successMessage != ''">
+        <button type="button" class="close" aria-label="Close" ng-click="closeSuccessAlert = true"><span aria-hidden="true">&times;</span></button>
+        <p>{{ successMessage }}</p>
+    </div>
+    <div class="alert alert-danger alert-dismissible" role="alert" ng-show="errorMessage != ''">
+        <p>{{ errorMessage }}</p>
+    </div>
+
+    <h1>Ändra event</h1>
+    <h3>
+        {{ eventName }}
+    </h3>
+
+    <p class="event-post-meta">
+        Skapad {{ event.created_at ? (event.created_at | date : 'yyyy-MM-dd HH:mm') : 'okänt' }}<em ng-show="event.updated_at != event.created_at"> (ändrad {{ (event.updated_at | date : 'yyyy-MM-dd HH:mm') }})</em> av <a href="creator/{{ event.creator.id }}">{{ event.creator.username }}</a> <br />
+
+    </p>
+
+    <form novalidate
+          ng-show="correctUser"
+          ng-include="'components/event/_event-form-view.html'"
+          ng-init="newNotEdit = false">
+    </form>
+
+</div>

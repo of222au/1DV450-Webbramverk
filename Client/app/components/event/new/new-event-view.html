@@ -1,0 +1,22 @@
+
+<div class="event-post">
+
+    <ol class="breadcrumb">
+        <li><a href="map">Hem</a></li>
+        <li><a href="events">Event</a></li>
+        <li class="active">Ny</li>
+    </ol>
+
+    <div class="alert alert-danger alert-dismissible" role="alert" ng-show="errorMessage != ''">
+        <p>{{ errorMessage }}</p>
+    </div>
+
+    <h1>Nytt event</h1>
+
+    <form novalidate
+          ng-show="isLoggedIn"
+          ng-include="'components/event/_event-form-view.html'"
+          ng-init="newNotEdit = true">
+    </form>
+
+</div>

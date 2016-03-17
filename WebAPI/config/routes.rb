@@ -17,7 +17,9 @@ Rails.application.routes.draw do
 
 
   resources :tags, only: [:index, :show]
-  resources :creators, only: [:create, :show]
+
+  get 'creators/current' => 'creators#current'
+  resources :creators, only: [:index, :create, :show]
 
   get 'events/nearby' => 'events#nearby'
   resources :events

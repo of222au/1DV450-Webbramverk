@@ -44,7 +44,7 @@ module SessionsHelper
       @token_payload = decode_jwt(auth_header.strip)
       unless @token_payload
         @error = ErrorMessage.new('The provided token was incorrect', 'Could not authorize')
-        do_respond_with  @error, :bad_request
+        do_respond_with  @error, :unauthorized
         #render json: { error: 'The provided token was incorrect' }, status: :bad_request
       end
     else

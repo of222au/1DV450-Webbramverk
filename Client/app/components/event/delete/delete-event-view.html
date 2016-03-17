@@ -1,0 +1,42 @@
+
+<div class="event-post">
+
+    <ol class="breadcrumb">
+        <li><a href="map">Hem</a></li>
+        <li><a href="events">Event</a></li>
+        <li><a href="event/{{ event.id }}">{{ eventName }}</a></li>
+        <li class="active">Ta bort</li>
+    </ol>
+
+    <div class="alert alert-danger alert-dismissible" role="alert" ng-show="errorMessage != ''">
+        <p>{{ errorMessage }}</p>
+    </div>
+
+    <div ng-show="correctUser">
+
+        <h1>Ta bort event</h1>
+        <h3>
+            {{ eventName }}
+        </h3>
+
+        <p class="event-post-meta">
+            Skapad {{ event.created_at ? (event.created_at | date : 'yyyy-MM-dd HH:mm') : 'okänt' }}<em ng-show="event.updated_at != event.created_at"> (ändrad {{ (event.updated_at | date : 'yyyy-MM-dd HH:mm') }})</em> av <a href="creator/{{ event.creator.id }}">{{ event.creator.username }}</a> <br />
+        </p>
+
+        <form novalidate>
+
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <p>Vill du verkligen ta bort detta event?</p>
+
+                <div>
+                    <button ng-click="deleteEvent()" class="btn btn-lg btn-danger">Ja, ta bort eventet</button>
+                    <button ng-click="cancelDelete()" class="btn btn-lg btn-default">Avbryt</button>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+    <a ng-show="!correctUser" class="btn btn-default" ng-click="cancelDelete()">Tillbaka</a>
+
+</div>

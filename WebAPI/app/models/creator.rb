@@ -36,7 +36,7 @@ class Creator < ActiveRecord::Base
   def serializable_hash (options={})
     if options == {}
       options = {
-          only: [ :username, :email, :created_at, :updated_at ],
+          only: [ :id, :username, :email, :created_at, :updated_at ],
           include: [events: {only: [:name], methods: :url}],
       }.update(options)
     end

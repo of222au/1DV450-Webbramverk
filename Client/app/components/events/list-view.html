@@ -1,0 +1,70 @@
+
+<ol class="breadcrumb">
+    <li><a href="map">Hem</a></li>
+    <li class="active">Event</li>
+</ol>
+
+<div ng-show="isLoggedIn()" class="pull-right">
+    <a href="event/new" class="btn btn-success">Nytt event</a>
+</div>
+
+<h1>Event</h1>
+
+<div class="alert alert-danger alert-dismissible" role="alert" ng-show="errorMessage != ''">
+    <p>{{ errorMessage }}</p>
+</div>
+
+
+<div class="row">
+    <div class="col-md-4 form-group">
+        <label for="searchEventsName" class="unbold">Filtrera på namn:</label>
+        <input type="text" class="form-control" id="searchEventsName" ng-model="searchEventsName" ng-change="filter()" />
+    </div>
+    <div class="col-md-3 form-group">
+        <label for="searchEventsLocationName" class="unbold">plats:</label>
+        <input type="text" class="form-control" id="searchEventsLocationName" ng-model="searchEventsLocationName" ng-change="filter()" />
+    </div>
+    <div class="col-md-3 form-group">
+        <label for="searchEventsTagName" class="unbold">tagg:</label>
+        <input type="text" class="form-control" id="searchEventsTagName" ng-model="searchEventsTagName" ng-change="filter()" />
+    </div>
+</div>
+
+
+<span ng-show="filteredEvents.length != allEvents.length">
+    {{ 'Visar ' + filteredEvents.length + ' av ' + allEvents.length + ' event:'}}
+    <button class="btn btn-sm btn-default" ng-click="clearFilter()">Rensa</button>
+</span>
+<span ng-show="filteredEvents.length == allEvents.length">
+    {{ 'Hittade ' + allEvents.length + ' event:'}}
+</span>
+
+<hr class="narrow-hr">
+
+<div ng-repeat="event in pageEvents" class="event-post">
+
+    <div ng-init="fullView = false"
+         event-view>
+    </div>
+
+</div>
+
+<div ng-show="pagination.firstPage != true || pagination.lastPage != true">
+    <nav>
+        <ul class="pagination">
+            <li ng-show="pagination.firstPage != true">
+                <a aria-label="Föregående" ng-click="previousPage()">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li ng-repeat="listPageNr in paginationPageList" ng-class="{ active: listPageNr == pageNr }">
+                <a ng-click="showPage(listPageNr)">{{ listPageNr }}</a>
+            </li>
+            <li ng-show="pagination.lastPage != true">
+                <a aria-label="Nästa" ng-click="nextPage()">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>

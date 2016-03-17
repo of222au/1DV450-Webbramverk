@@ -1,0 +1,52 @@
+<div class="map-event-list">
+    <h3>Senaste eventen</h3>
+
+    <div class="alert alert-danger alert-dismissible" role="alert" ng-show="errorMessage != ''">
+        <p>{{ errorMessage }}</p>
+    </div>
+
+    <div>
+        <div ng-repeat="event in mapController.eventList">
+            <h4><a href="event/{{ event.id }}">{{ event.name }}</a> <small>(<a ng-click="showMarker(event)" class="map-link">visa på kartan</a>)</small></h4>
+            <p>{{ event.location.name }}, <time>{{ event.created_at | date : 'd/M yyyy' }}</time></p>
+        </div>
+    </div>
+
+
+    <div>
+        <nav>
+            <ul class="pagination">
+                <li ng-show="mapController.pagination.first_page != true">
+                    <a aria-label="Föregående" ng-click="loadEventsPage(eventsPageNr + 1)">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li ng-repeat="pageNr in mapController.paginationPageList" ng-class="{ active: pageNr == eventsPageNr }">
+                    <a ng-click="loadEventsPage(pageNr)">{{ pageNr }}</a>
+                </li>
+                <li ng-show="mapController.pagination.last_page != true">
+                    <a aria-label="Nästa" ng-click="loadEventsPage(eventsPageNr - 1)">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <div>
+        <a aria-label="Visa hela listan" href="events" class="btn btn-sm btn-default">Visa hela listan</a>
+    </div>
+
+</div>
+
+<ui-gmap-google-map center='map.center' zoom='map.zoom' control="{}" class="map-full-screen">
+    <ui-gmap-window show="map.window.show" coords="map.window.model.location" options="map.window.options" closeclick="map.window.closeClick()">
+        <div>
+            <h3>{{ map.window.model.name }}</h3>
+            <p>{{ map.window.model.description }}</p>
+        </div>
+    </ui-gmap-window>
+    <ui-gmap-markers models="mapController.eventList" idKey="id" coords="'location'" icon="'icon'" click="onMarkerClick" control="mapController.markersControl">
+    </ui-gmap-markers>
+</ui-gmap-google-map>
+

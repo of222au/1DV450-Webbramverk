@@ -1,10 +1,11 @@
-# API-registrering, Ruby on Rails-applikation i kursen Webbramverk
+# Ruby on Rails-applikation i kursen Webbramverk
 Linnéuniversitet VT16
 
 Av: Ola Franzén (of222au)
 
 ## För att köra igång servern
-- Kör "vagrant up"
+- Klona/ladda ner repositoriet. 
+- Kör "vagrant up" (i den yttre mappen).
 - Kör "vagrant ssh"
 - Navigera till applikationen genom "cd /vagrant/WebAPI"
 - Installera bundles genom: "bundle install"
@@ -12,7 +13,15 @@ Av: Ola Franzén (of222au)
 - Starta servern genom "rails s -b 0.0.0.0"
 - Webbapplikationen kan nu kommas åt via http://localhost:3000
 
-## För att använda Postman-filen:
+## För att köra igång klienten
+- Använd t.ex JetBrains WebStorm och ladda in Client-mappen.
+- Editera filen app/app.js:
+  - Sätt en API-nyckel (se instruktioner hur detta kan läsas ut ur databasen i stegen om Postman nedan), sätt sedan nyckeln i egenskapen 'key' i constant('API')
+- Tryck fram app/index.html, och gör en "Preview" i en webbläsare (i Windows tryck Alt+F2).
+- Startsidan bör nu visas och du kan navigera runt i webbapplikationen (observera att det inte går göra en refresh (F5) i annat än på root url:en (Client/app/), samt på startsidan (/map) då jag lagt en kopia på index.html här för testnings skull).
+
+
+### För att använda Postman-filen:
 - Läs in postman-filen (som slutar på .postman_collection) i Postman genom "Import".
 - En mapp "Webbramverk API" har nu lagts till med olika metoder.
 - Sätt rätt Auth token:
@@ -29,4 +38,25 @@ Av: Ola Franzén (of222au)
 	- Rensa fältet "ApiKey" och klistra sedan in den du kopierade.
 - Nu kan du köra de sparade metoder som finns i "Main"-mappen och se att allt fungerar.
 	
+
+## Ändringar som gjordes på API-delen under byggandet av klienten
+
+###Update och save-funktionerna i EventsController:
+- Fick bättre returnering vid fel, t.ex validering som inte går igenom. Detta för att klienten lättare ska kunna visa vad exakt som gick fel (vilken egenskap t.ex).
+- Gjorde så update och save använder samma funktion med bara små skillnader (DRY).
+- La till transaktions-hantering, så att om någon del misslyckas (t.ex sparande av taggar) så sparas inget (inte heller eventet). Fick i.o.m. detta även skapa en egen error-klass för att särskilja fel med sparande av tagg från sparande av själva eventet.
+
+###Location-validering
+- La till validering på 'name' i Location-modellen i Rails för att få ett bra felmeddelande till klienten vid sparande av event.
+
+###Fler parametrar
+- Fick lägga till id-fält för några modeller vid GET-anrop mot API:et, för att sparande ska kunna vara möjligt (t.ex i location_attributes vid sparande av event, id i creator-modellen och några fler).
+
+###CreatorsController current-funktion
+- La till en funktion för att hämta ut nuvarande inloggade creator, för att kunna använda i klienten.
+
+
+
+
+
 

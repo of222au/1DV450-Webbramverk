@@ -1,9 +1,10 @@
 class ErrorMessage
 
-  def initialize(developer_error_message, user_error_message)
+  def initialize(developer_error_message, user_error_message, errors = nil)
 
     @developer_error_message = developer_error_message
     @user_error_message = user_error_message
+    @errors = errors
 
   end
 

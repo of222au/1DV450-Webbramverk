@@ -1,0 +1,28 @@
+<a href="event/{{ event.id }}/edit" class="btn btn-sm btn-primary pull-right" ng-show="checkIfCurrentUser(event.creator.id)"><span class="glyphicon glyphicon-pencil"></span></a>
+<a href="event/{{ event.id }}/delete" class="btn btn-sm btn-danger pull-right" ng-show="checkIfCurrentUser(event.creator.id)"><span class="glyphicon glyphicon-trash"></span></a>
+
+<h1 ng-show="fullView">{{ event.name }}</h1>
+<h2 ng-show="!fullView" class="event-post-title">
+    <a href="event/{{ event.id }}">{{ event.name }}</a>
+</h2>
+
+<p class="event-post-meta">
+    {{ event.created_at ? (event.created_at | date : 'yyyy-MM-dd HH:mm') : 'okänt' }}<em ng-show="event.updated_at != event.created_at"> (ändrad {{ (event.updated_at | date : 'yyyy-MM-dd HH:mm') }})</em> av <a href="creator/{{ event.creator.id }}">{{ event.creator.username }}</a>
+    <br /> Plats: {{ event.location.name ? event.location.name : '-' }}
+</p>
+
+<hr ng-show="fullView" />
+
+<p>
+    {{ event.description ? (event.description.length > 100 && !fullView ? event.description.substring(0, 100) + '...' : event.description) : '' }}
+    <a ng-show="!fullView" href="event/{{ event.id }}">läs mer</a>
+</p>
+
+<div>
+    <span>
+        {{ event.tags.length <= 0 ? 'Taggar: (inga)' : 'Taggar:' }}
+    </span>
+    <span ng-repeat="tag in event.tags">
+        <a href="events/?tag={{ tag.name }}" class="btn btn-sm btn-info">{{ tag.name }}</a>
+    </span>
+</div>

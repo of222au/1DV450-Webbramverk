@@ -1,0 +1,35 @@
+
+<div class="event-post">
+
+    <ol class="breadcrumb">
+        <li><a href="map">Hem</a></li>
+        <li class="active">Logga in</li>
+    </ol>
+
+
+    <h1>Inloggning</h1>
+
+    <form novalidate>
+
+        <div class="alert alert-danger alert-dismissible" role="alert" ng-show="!closeValidationAlert && errorMessage != ''">
+            <button type="button" class="close" ng-click="closeValidationAlert = true" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <p>Kunde inte logga in, prova igen.</p>
+        </div>
+
+        <div class="form-group">
+            <label for="creator.email">E-post</label>
+            <input type="email" ng-model="creator.email" class="form-control" id="creator.email" placeholder="E-post">
+        </div>
+
+        <div class="form-group">
+            <label for="creator.password">Lösenord</label>
+            <input type="password" ng-model="creator.password" class="form-control" id="creator.password" placeholder="Lösenord">
+        </div>
+
+        <div class="div-margined">
+            <button ng-click="login()" class="btn btn-lg btn-success">Logga in</button>
+        </div>
+
+    </form>
+
+</div>

@@ -5,7 +5,7 @@ class Tag < ActiveRecord::Base
 
   validates :name,
             :presence => {:message => 'Du måste ange ett namn'},
-            :length => { minimum: 2, maximum: 255 }
+            :length => { minimum: 2, maximum: 255, message: 'Namnet på taggen måste vara mellan 2 och 255 tecken' }
 
   validates_uniqueness_of :name,
                           :case_sensitive => false,

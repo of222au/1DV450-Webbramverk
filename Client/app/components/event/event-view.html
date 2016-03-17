@@ -1,0 +1,19 @@
+
+<div class="event-post">
+
+    <ol class="breadcrumb">
+        <li><a href="map">Hem</a></li>
+        <li><a href="events">Event</a></li>
+        <li class="active">{{ event.name }}</li>
+    </ol>
+
+    <div ng-init="fullView = true"
+         event-view>
+    </div>
+
+</div>
+
+<ui-gmap-google-map center='map.center' zoom='map.zoom' control="{}">
+    <ui-gmap-marker idKey="event.id" coords="event.location" click="onMarkerClick" control="eventController.markersControl">
+    </ui-gmap-marker>
+</ui-gmap-google-map>

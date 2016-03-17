@@ -2,7 +2,7 @@ class Event < ActiveRecord::Base
   include Rails.application.routes.url_helpers
 
   belongs_to :creator
-  has_one :location
+  has_one :location, dependent: :destroy
   has_many :event_tags, inverse_of: :event
   has_many :tags, through: :event_tags
   #has_and_belongs_to_many :tags
@@ -18,14 +18,14 @@ class Event < ActiveRecord::Base
 
   validates :name,
             :presence => {:message => 'Du måste ange ett namn'},
-            :length => { minimum: 2, maximum: 255 }
+            :length => { minimum: 2, maximum: 255, message: 'Namnet måste vara mellan 2 och 255 tecken' }
 
 
   def serializable_hash (options={})
     if options == {}
       options = {
           except: :creator_id,
-          include: { :tags => { :only => :name, :methods => :url }, :location => { :only => [ :name, :latitude, :longitude] }, :creator => { :only => [:username], :methods => :url }},
+          include: { :tags => { :only => :name, :methods => :url }, :location => { :only => [ :id, :name, :latitude, :longitude] }, :creator => { :only => [:id, :username], :methods => :url }},
           methods: [:url]
       }.update(options)
     end

@@ -1,0 +1,51 @@
+
+<div class="alert alert-danger alert-dismissible" role="alert" ng-show="!closeValidationAlert && (validationErrors.length > 0 || knownValidationErrors.length > 0)">
+    <button type="button" class="close" aria-label="Close" ng-click="closeValidationAlert = true"><span aria-hidden="true">&times;</span></button>
+    <p>Kunde inte spara, åtgärda felen och prova igen.</p>
+    <ul ng-show="validationErrors.length > 0">
+        <li ng-repeat="error in validationErrors">{{error.message}}</li>
+    </ul>
+</div>
+
+<div class="form-group {{ hasValidationError('name') ? 'has-error' : '' }}">
+    <label for="event.name">Namn</label>
+    <input type="text" ng-model="event.name" class="form-control" id="event.name" placeholder="Namn">
+    <span class="help-block" ng-show="hasValidationError('name')">{{ getValidationErrorMessage('name') }}</span>
+</div>
+
+<div class="form-group {{ hasValidationError('description') ? 'has-error' : '' }}">
+    <label for="event.description">Beskrivning</label>
+    <textarea type="text" ng-model="event.description" class="form-control" id="event.description" placeholder="Beskrivning"></textarea>
+    <span class="help-block" ng-show="hasValidationError('description')">{{ getValidationErrorMessage('description') }}</span>
+</div>
+
+<div class="form-group">
+    <label for="tags">Taggar</label>
+    <tags-input ng-model="event.tags" id="tags" type="text" data-display-property="name" data-key-property="name" data-min-length="2"></tags-input>
+</div>
+
+<div class="row">
+    <div class="col-md-4 form-group {{ hasValidationError('location.name') ? 'has-error' : '' }}">
+        <label for="event.location.name">Plats</label>
+        <input type="text" ng-model="event.location.name" class="form-control" id="event.location.name" placeholder="Namn">
+        <span class="help-block" ng-show="hasValidationError('location.name')">{{ getValidationErrorMessage('location.name') }}</span>
+    </div>
+    <div class="col-md-4 form-group">
+        <label for="event.location.latitude">Latitud</label>
+        <input type="text" ng-model="event.location.latitude" class="form-control" id="event.location.latitude" placeholder="Latitud" title="Ändras lättast genom att flytta markören på kartan">
+    </div>
+    <div class="col-md-4 form-group">
+        <label for="event.location.longitude">Longitud</label>
+        <input type="text" ng-model="event.location.longitude" class="form-control" id="event.location.longitude" placeholder="Longitud" title="Ändras lättast genom att flytta markören på kartan">
+    </div>
+</div>
+<div>
+    <ui-gmap-google-map center='map.center' zoom='map.zoom' control="{}">
+        <ui-gmap-marker idKey="'id'" coords="event.location" click="onMarkerClick" control="eventController.markersControl" options="markerOptions" events="markerEvents">
+        </ui-gmap-marker>
+    </ui-gmap-google-map>
+</div>
+
+<div class="div-margined">
+    <button ng-click="saveEvent()" class="btn btn-lg btn-success">{{ newNotEdit ? 'Spara event' : 'Spara ändringar' }}</button>
+</div>

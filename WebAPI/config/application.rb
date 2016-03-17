@@ -27,5 +27,18 @@ module WebAPI
 
     # this is for API rate limit
     #config.middleware.use Rack::Throttle::Minute, max: 3, cache: Memcached.new, key_prefix: :throttle
+
+    #config.middleware.insert_before 0, "Rack::Cors" do
+    config.middleware.insert_before ActionDispatch::Static, Rack::Cors do
+      allow do
+        origins '*'
+        resource '*',
+                 :headers => :any,
+                 #:headers => ['Origin', 'X-Requested-With', 'Content-Type', 'Accept', 'Authorization', 'X-Pagination'],
+                 :methods => [:get, :post, :delete, :put, :options, :head, :patch],
+            :expose => ['X-Pagination']
+      end
+    end
+
   end
 end
