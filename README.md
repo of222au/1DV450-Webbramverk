@@ -16,12 +16,16 @@ Av: Ola Franzén (of222au)
 ## För att köra igång klienten
 - Använd t.ex JetBrains WebStorm och ladda in Client-mappen.
 - Editera filen app/app.js:
-  - Sätt en API-nyckel (se instruktioner hur detta kan läsas ut ur databasen i stegen om Postman nedan), sätt sedan nyckeln i egenskapen 'key' i constant('API')
+  - Sätt en API-nyckel enligt instruktionerna under "Få tag i en API-nyckel" nedan, sätt sedan denna nyckel i egenskapen 'key' i constant('API')
+  - Ändra vid behov adressen till servern i egenskapen 'baseUrl' i constant('API'), t.ex om servern körs på en annan port.
 - Tryck fram app/index.html, och gör en "Preview" i en webbläsare (i Windows tryck Alt+F2).
 - Startsidan bör nu visas och du kan navigera runt i webbapplikationen (observera att det inte går göra en refresh (F5) i annat än på root url:en (Client/app/), samt på startsidan (/map) då jag lagt en kopia på index.html här för testnings skull).
 
+### Få tag i en API-nyckel
+- Logga in på servern (http://localhost:3000 vanligtvis) med ett administratörs-inlogg: admin@test.com, lösenord: admin
+- Kopiera en API-nyckel från någon av användarna.
 
-##Inloggningsuppgifter
+### Inloggningsuppgifter på klienten
 - Två "creators" skapas automatiskt genom seedning som man kan logga in med för testning:
  - user1@test.com / lösenord: 1234
  - user2@test.com / lösenord: 1234
@@ -35,18 +39,15 @@ Av: Ola Franzén (of222au)
 	- Klicka på Webbramverk uppe i högra hörnet -> "Manage environments" -> "Webbramverk".
 	- Rensa fältet "AuthToken" och klistra sedan in den du fick i responsen tidigare.
 - Sätt rätt API key:
-	- Använd SQLite Browser (http://sqlitebrowser.org/) eller någon annat program för att kolla i en sqlite3-databas.
-	- Öppna filen db/development.sqlite3
-	- Gå till fliken "Browse Data" och välj tabellen "user_applications". 
-	- Kopiera en av "api_key"-nycklarna (kvittar vilken).
-	- Gå tillbaka till Postman och klicka på Webbramverk uppe i högra hörnet -> "Manage environments" -> "Webbramverk".
+	- Följ instruktionerna under "Få tag i en API-nyckel".
+	- I Postman klicka på Webbramverk uppe i högra hörnet -> "Manage environments" -> "Webbramverk".
 	- Rensa fältet "ApiKey" och klistra sedan in den du kopierade.
 - Nu kan du köra de sparade metoder som finns i "Main"-mappen och se att allt fungerar.
 	
 
 ## Ändringar som gjordes på API-delen under byggandet av klienten
 
-###Update och save-funktionerna i EventsController:
+### Update och save-funktionerna i EventsController:
 - Fick bättre returnering vid fel, t.ex validering som inte går igenom. Detta för att klienten lättare ska kunna visa vad exakt som gick fel (vilken egenskap t.ex).
 - Gjorde så update och save använder samma funktion med bara små skillnader (DRY).
 - La till transaktions-hantering, så att om någon del misslyckas (t.ex sparande av taggar) så sparas inget (inte heller eventet). Fick i.o.m. detta även skapa en egen error-klass för att särskilja fel med sparande av tagg från sparande av själva eventet.

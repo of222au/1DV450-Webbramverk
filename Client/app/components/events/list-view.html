@@ -52,16 +52,16 @@
 <div ng-show="pagination.firstPage != true || pagination.lastPage != true">
     <nav>
         <ul class="pagination">
-            <li ng-show="pagination.firstPage != true">
-                <a aria-label="Föregående" ng-click="previousPage()">
+            <li ng-class="{ disabled: pagination.firstPage == true }">
+                <a aria-label="Föregående" ng-click="pagination.firstPage == true || previousPage()">
                     <span aria-hidden="true">&laquo;</span>
                 </a>
             </li>
             <li ng-repeat="listPageNr in paginationPageList" ng-class="{ active: listPageNr == pageNr }">
                 <a ng-click="showPage(listPageNr)">{{ listPageNr }}</a>
             </li>
-            <li ng-show="pagination.lastPage != true">
-                <a aria-label="Nästa" ng-click="nextPage()">
+            <li ng-class="{ disabled: pagination.lastPage == true }">
+                <a aria-label="Nästa" ng-click="pagination.lastPage == true || nextPage()">
                     <span aria-hidden="true">&raquo;</span>
                 </a>
             </li>

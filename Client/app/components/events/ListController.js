@@ -47,17 +47,10 @@ function ListController($scope, eventService, loginService, $window, $location) 
     };
 
     $scope.previousPage = function() {
-        if ($scope.pageNr > 1) {
-            $scope.pageNr = $scope.pageNr - 1;
-        }
-        else {
-            $scope.pageNr = 1;
-        }
-        $scope.filter();
+        $scope.showPage($scope.pageNr - 1);
     };
     $scope.nextPage = function() {
-        $scope.pageNr = $scope.pageNr + 1;
-        $scope.filter();
+        $scope.showPage($scope.pageNr + 1);
     };
     $scope.showPage = function(pageNr) {
         $scope.pageNr = pageNr;

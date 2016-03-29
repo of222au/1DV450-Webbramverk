@@ -45,6 +45,11 @@ function MapController($scope, eventService, generalSettings) {
                 console.log(error);
                 $scope.errorMessage = 'Kunde inte ladda event-listan. Prova igen lite senare.';
             });
+
+        //disable pagination button click if they have "disabled" class
+        $('.pagination .disabled a').on('click', function(e) {
+            e.preventDefault();
+        });
     };
 
 

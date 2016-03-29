@@ -16,16 +16,16 @@
     <div>
         <nav>
             <ul class="pagination">
-                <li ng-show="mapController.pagination.first_page != true">
-                    <a aria-label="Föregående" ng-click="loadEventsPage(eventsPageNr + 1)">
+                <li ng-class="{ disabled: mapController.pagination.first_page == true }">
+                    <a aria-label="Föregående" ng-click="mapController.pagination.first_page == true || loadEventsPage(eventsPageNr - 1)">
                         <span aria-hidden="true">&laquo;</span>
                     </a>
                 </li>
                 <li ng-repeat="pageNr in mapController.paginationPageList" ng-class="{ active: pageNr == eventsPageNr }">
                     <a ng-click="loadEventsPage(pageNr)">{{ pageNr }}</a>
                 </li>
-                <li ng-show="mapController.pagination.last_page != true">
-                    <a aria-label="Nästa" ng-click="loadEventsPage(eventsPageNr - 1)">
+                <li ng-class="{ disabled: mapController.pagination.last_page == true }">
+                    <a aria-label="Nästa" ng-click="mapController.pagination.last_page == true || loadEventsPage((eventsPageNr + 1))">
                         <span aria-hidden="true">&raquo;</span>
                     </a>
                 </li>

@@ -46,6 +46,9 @@ function NewEventController($scope, eventService, loginService, $window, $locati
     };
 
     var initialize = function() {
+
+        validationService.resetErrors();
+
         if (!$scope.isLoggedIn) {
             $location.url('login');
         }

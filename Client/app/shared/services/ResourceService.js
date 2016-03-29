@@ -119,6 +119,23 @@ function ResourceService($http, API, loginService) {
             });
         };
 
+        Resource.delete = function(collectionName, data) {
+
+            var req = {
+                method: 'DELETE',
+                url: API.baseUrl + collectionName + '/' + data.id,
+                headers: {
+                    'Accept': API.format,
+                    'X-ApiKey': API.key,
+                    'Authorization': loginService.getCurrentAuthToken()
+                }
+            };
+
+            return $http(req).then(function(response) {
+                return new Resource(response.data);
+            });
+        };
+
         return Resource;
     };
 }

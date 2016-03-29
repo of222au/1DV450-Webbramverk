@@ -75,7 +75,7 @@ angular
         'baseUrl': 'http://localhost:3000/', //change this url if needed (if API is running on another port for example)
         'loginPath': 'auth',
         'format': 'application/json',
-        'key': '' //Put an user application API-key here
+        'key': 'ffecfbb495389cead2114ccd8fbd066d00bf3280e1b2b3bc' //Put an user application API-key here
     })
     .constant('LocalStorageConstants', {  //keys for sessionStorage-keys
         'eventsKey': 'events',

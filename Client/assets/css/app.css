@@ -33,7 +33,7 @@ ul {
     background-color: white;
     border-radius: 10%;
     padding: 20px;
-    opacity: 0.8;
+    opacity: 0.85;
 }
 .map-event-list a.map-link {
     cursor: crosshair;
@@ -64,4 +64,8 @@ ul {
 }
 .unbold {
     font-weight: normal;
+}
+
+.pagination li a {
+    cursor: pointer;
 }

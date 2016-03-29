@@ -43,30 +43,20 @@ function DeleteEventController($scope, $routeParams, $location, eventService, lo
 
         validationService.resetErrors();
 
-        $scope.closeSuccessAlert = false;
-        $scope.successMessage = '';
-
-        var eventPromise = eventService.updateEvent($scope.event);
+        var eventPromise = eventService.deleteEvent($scope.event);
         eventPromise
             .then(function (data) {
-                //save the event
-                $scope.event = data;
 
-                //set center of map to the marker
-                $scope.map.center = {
-                    latitude: $scope.event.location.latitude,
-                    longitude: $scope.event.location.longitude
-                };
-
-                $scope.successMessage = 'Eventet har sparats';
+                //redirect to events
+                $location.path('events');
 
             }).catch(function (error) {
                 // Something went wrong!
                 validationService.parseErrors(error);
-            });
 
-        //scroll to top of page
-        $window.scrollTo(0, 0);
+                //scroll to top of page
+                $window.scrollTo(0, 0);
+            });
     };
 
     $scope.cancelDelete = function() {

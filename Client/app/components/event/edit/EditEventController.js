@@ -42,6 +42,8 @@ function EditEventController($scope, $routeParams, eventService, loginService, v
 
     var loadEvent = function() {
 
+        validationService.resetErrors();
+        
         var eventPromise = eventService.getEvent(vm.eventId);
         eventPromise
             .then(function (data) {

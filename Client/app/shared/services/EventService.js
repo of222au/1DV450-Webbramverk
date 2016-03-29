@@ -105,6 +105,17 @@ function EventService(Resource, LocalStorage, LSC, $q) {
                 clearCachedEventData(data.id);
                 return data;
             });
+        },
+
+
+        deleteEvent: function(data) {
+
+            var event = prepareEventData(data);
+
+            return Event.delete('events', event).then(function(data) {
+                clearCachedEventData(data.id);
+                return data;
+            });
         }
     };
 }
